@@ -16,5 +16,18 @@ namespace PLAnalizer
         {
             InitializeComponent();
         }
+
+        private void OpenFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog FileDialog = new OpenFileDialog();
+            FileDialog.Title = "Load Papyrus log file...";
+            FileDialog.Filter = "Log files (*.log)|*.log|All files (*.*)|*.*";
+            FileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\My Games\Skyrim Special Edition\Logs\Script";
+
+            if(FileDialog.ShowDialog() == DialogResult.OK)
+            {
+                PapyrusOutput.Text = System.IO.File.ReadAllText(FileDialog.FileName);
+            }
+        }
     }
 }
